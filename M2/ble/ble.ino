@@ -3,7 +3,6 @@
 long previousMillis = 0;
 int interval = 0;
 int ledState = LOW;
-
 BLEService ledService("180A");
 
 BLEByteCharacteristic switchCharacteristic("2A57", BLERead | BLEWrite);

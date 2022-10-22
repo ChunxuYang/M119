@@ -1,7 +1,6 @@
 #include <WiFiNINA.h>
 
 char ssid[] = "Chunxu";
-char user[] = "chunxuyang@ucla.edu";
 char pass[] = "qweasdzxc";
 int status = WL_IDLE_STATUS;
 int ledState = LOW;
