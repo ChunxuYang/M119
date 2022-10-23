@@ -1,0 +1,10 @@
+{
+  "name": "part2",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "dependencies": {
+    "@abandonware/noble": "^1.9.2-15",
+    "noble": "^1.9.1"
+  }
+}

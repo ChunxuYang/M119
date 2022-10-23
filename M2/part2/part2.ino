@@ -55,6 +55,10 @@ void setup()
   // set advertised local name and service UUID
 
   BLE.setLocalName(BLE_LOCAL_NAME);
+  BLE.setAdvertisedServiceUuid(accelerometerService.uuid());
+
+  Serial.print("BLE advertised service UUID: ");
+  Serial.println(accelerometerService.uuid());
   BLE.setAdvertisedService(accelerometerService);
 
   // add characteristics and service
@@ -68,6 +72,11 @@ void setup()
   BLE.advertise();
 
   Serial.println("BLE Accelerometer Peripheral");
+
+  // set the initial value for characteristics
+  accelerometerCharacteristicX.writeValue(0);
+  accelerometerCharacteristicY.writeValue(0);
+  accelerometerCharacteristicZ.writeValue(0);
 }
 
 void loop()
@@ -83,6 +92,13 @@ void loop()
     accelerometerCharacteristicX.writeValue(x);
     accelerometerCharacteristicY.writeValue(y);
     accelerometerCharacteristicZ.writeValue(z);
+
+    Serial.print("x = ");
+    Serial.print(x);
+    Serial.print(", y = ");
+    Serial.print(y);
+    Serial.print(", z = ");
+    Serial.println(z);
   }
 
   // poll central for characteristic updates
@@ -91,27 +107,6 @@ void loop()
   {
     Serial.print("Connected to central: ");
     Serial.println(central.address());
-
-    while (central.connected())
-    {
-      if (accelerometerCharacteristicX.written())
-      {
-        Serial.print("X = ");
-        Serial.println(accelerometerCharacteristicX.value());
-      }
-
-      if (accelerometerCharacteristicY.written())
-      {
-        Serial.print("Y = ");
-        Serial.println(accelerometerCharacteristicY.value());
-      }
-
-      if (accelerometerCharacteristicZ.written())
-      {
-        Serial.print("Z = ");
-        Serial.println(accelerometerCharacteristicZ.value());
-      }
-    }
   }
 
   delay(100);

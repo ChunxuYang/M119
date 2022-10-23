@@ -2,6 +2,21 @@
     "version": 4,
     "configurations": [
         {
+            "name": "Linux",
+            "compilerPath": "/usr/bin/clang",
+            "compilerArgs": [],
+            "intelliSenseMode": "linux-clang-x64",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/home/koorong/.arduino15/packages/**",
+                "/home/koorong/Arduino/libraries/**"
+            ],
+            "forcedInclude": [],
+            "cStandard": "c17",
+            "cppStandard": "c++14",
+            "defines": []
+        },
+        {
             "name": "Arduino",
             "compilerPath": "/home/koorong/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/7-2017q4/bin/arm-none-eabi-g++",
             "compilerArgs": [
@@ -18,7 +33,6 @@
             ],
             "intelliSenseMode": "gcc-x64",
             "includePath": [
-                "/home/koorong/Arduino/libraries/Arduino_LSM6DS3/src/",
                 "/home/koorong/.arduino15/packages/arduino/tools/CMSIS/4.5.0/CMSIS/Include/",
                 "/home/koorong/.arduino15/packages/arduino/tools/CMSIS-Atmel/1.2.0/CMSIS/Device/ATMEL/",
                 "/home/koorong/.arduino15/packages/arduino/hardware/samd/1.8.13/cores/arduino/api/deprecated",
@@ -26,6 +40,9 @@
                 "/home/koorong/.arduino15/packages/arduino/hardware/samd/1.8.13/cores/arduino",
                 "/home/koorong/.arduino15/packages/arduino/hardware/samd/1.8.13/variants/nano_33_iot",
                 "/home/koorong/Arduino/libraries/ArduinoBLE/src",
+                "/home/koorong/Arduino/libraries/Arduino_LSM6DS3/src",
+                "/home/koorong/.arduino15/packages/arduino/hardware/samd/1.8.13/libraries/Wire",
+                "/home/koorong/.arduino15/packages/arduino/hardware/samd/1.8.13/libraries/SPI",
                 "/home/koorong/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/7-2017q4/arm-none-eabi/include/c++/7.2.1",
                 "/home/koorong/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/7-2017q4/arm-none-eabi/include/c++/7.2.1/arm-none-eabi",
                 "/home/koorong/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/7-2017q4/arm-none-eabi/include/c++/7.2.1/backward",

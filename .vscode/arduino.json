@@ -1,5 +1,5 @@
 {
     "board": "arduino:samd:nano_33_iot",
     "port": "/dev/ttyACM0",
-    "sketch": "M2/ble/ble.ino"
+    "sketch": "M2/part2/part2.ino"
 }
