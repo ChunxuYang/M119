@@ -23,7 +23,7 @@ void setup()
       ;
   }
 
-  BLE.setLocalName("Nano 33 IoT");
+  BLE.setLocalName("Chunxu");
   BLE.setAdvertisedService(ledService);
 
   ledService.addCharacteristic(switchCharacteristic);

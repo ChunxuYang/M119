@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>M3</title>
+</head>
+
+<body>
+  <canvas class="zdog-canvas" width="500" height="500"></canvas>
+
+  <script src="https://unpkg.com/zdog@1/dist/zdog.dist.min.js"></script>
+  <script lang="javascript">
+    const factor = 10;
+    const illo = new Zdog.Illustration({
+      element: '.zdog-canvas',
+      dragRotate: true,
+    });
+
+    let box = new Zdog.Box({
+      addTo: illo,
+      width: 45 * factor,
+      height: 2 * factor,
+      depth: 18 * factor,
+      stroke: false,
+      color: '#C25', // default face color
+      leftFace: '#EA0',
+      rightFace: '#E62',
+      topFace: '#ED0',
+      bottomFace: '#636',
+    });
+
+    function animate() {
+      illo.updateRenderGraph();
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // do fetch every 10ms
+    setInterval(() => {
+      fetch('http://localhost:3000/data')
+        .then(response => response.json())
+        .then(data => {
+          illo.rotate.y = data.y;
+          illo.rotate.x = data.x;
+          illo.rotate.z = data.z;
+        })
+
+    }, 10);
+  </script>
+
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      width: 100vw;
+      background-color: bisque;
+    }
+  </style>
+</body>
+
+</html>
