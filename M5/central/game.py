@@ -1,5 +1,8 @@
+import threading
+
 from paddle import Paddle
 from ball import Ball
+from central import run_central
 import pygame
 
 BLACK = (0, 0, 0)
@@ -9,9 +12,25 @@ SIZE = (700, 500)
 FPS = 60
 
 
-def run_game():
+# a daemon thread that runs central in the background
+class BackgroundCentral(threading.Thread):
+    def __init__(self, pygameInstance):
+        threading.Thread.__init__(self)
+        self.daemon = True
+        self.pygameInstance = pygameInstance
 
+    def run(self):
+        run_central(
+            self.pygameInstance
+        )
+
+
+def run_game():
     pygame.init()
+
+    # run central in the background
+    background_central = BackgroundCentral(pygame)
+    background_central.start()
 
     screen = pygame.display.set_mode(SIZE)
     pygame.display.set_caption("Pong")
@@ -52,6 +71,18 @@ def run_game():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 carryOn = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_x:
+                    carryOn = False
+                if event.key == pygame.K_UP:
+                    paddleA.move_up(5)
+                if event.key == pygame.K_DOWN:
+                    paddleA.move_down(5)
+
+                if event.key == pygame.K_w:
+                    paddleB.move_up(5)
+                if event.key == pygame.K_s:
+                    paddleB.move_down(5)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:
@@ -110,13 +141,9 @@ def run_game():
         screen.blit(text, (150, 200))
         pygame.display.flip()
 
-    # if any key is pressed, reset the game
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-            elif event.type == pygame.KEYDOWN:
-                pygame.quit()
+    pygame.time.wait(10000)
+
+    pygame.quit()
 
 
 if __name__ == "__main__":

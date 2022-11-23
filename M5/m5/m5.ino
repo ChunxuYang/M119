@@ -1,12 +1,3 @@
-/*
- * @author: Chunxu Yang
- * @date: 2022-10-22
- * @description: This is the second part of the second assignment of M2.
- * @description: This program is used to send the acceleration data to the ble.
- * @cite this code is based on the code from the provided website.
- * @cite https://github.com/ucla-hci/m119/blob/main/m2b_peripheral/m2b_peripheral.ino
- */
-
 #include <ArduinoBLE.h>
 #include <Arduino_LSM6DS3.h>
 
@@ -104,30 +95,14 @@ void loop()
     accelerometerCharacteristicY.writeValue(ay);
     accelerometerCharacteristicZ.writeValue(az);
 
-//    Serial.print("ax = ");
-//    Serial.print(ax);
-//    Serial.print(", ay = ");
-//    Serial.print(ay);
-//    Serial.print(", az = ");
-//    Serial.println(az);
+    if (az > 0.8) {
+      Serial.println("up");
+    }
+
+    if (az < -0.8) {
+      Serial.println("down");
+    }
   }
-
-  if (IMU.gyroscopeAvailable())
-  {
-    IMU.readGyroscope(gx, gy, gz);
-
-    gyroscopeCharacteristicX.writeValue(gx);
-    gyroscopeCharacteristicY.writeValue(gy);
-    gyroscopeCharacteristicZ.writeValue(gz);
-
-    Serial.print("Gx = ");
-    Serial.println(gx);
-    Serial.print("Gy = ");
-    Serial.println(gy);
-    Serial.print("Gz = ");
-    Serial.println(gz);
-  }
-
 
   delay(10);
 }

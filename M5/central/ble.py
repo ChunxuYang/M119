@@ -1,9 +1,10 @@
 import struct
-
 from bleak import BleakClient, BleakScanner
 import asyncio
+from pyautogui import press
 
 address_a = "58:bf:25:3a:e8:6e"
+address_b = "58:bf:25:3a:e8:6e"
 
 BLE_UUID_ACCELEROMETER_SERVICE = "22e04be7-f090-4c5a-9a32-4dbdb31b738b"
 
@@ -36,13 +37,12 @@ async def run(address):
             gy = struct.unpack('f', gy)[0]
             gz = struct.unpack('f', gz)[0]
 
-            print("Accelerometer: ({0}, {1}, {2})".format(ax, ay, az))
-            print("Gyroscope: ({0}, {1}, {2})".format(gx, gy, gz))
-
-            if gx > 0.5:
+            if az > 0.9:
                 print("move up")
-            elif gx < -0.5:
+                press('up')
+            elif az < -0.9:
                 print("move down")
+                press('down')
 
             await asyncio.sleep(0.01)
 
