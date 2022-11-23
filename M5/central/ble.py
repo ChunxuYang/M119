@@ -1,10 +1,9 @@
 import struct
 
-from bleak import BleakClient
+from bleak import BleakClient, BleakScanner
 import asyncio
 
 address_a = "58:bf:25:3a:e8:6e"
-address_b = "58:bf:25:3a:e8:6e"
 
 BLE_UUID_ACCELEROMETER_SERVICE = "22e04be7-f090-4c5a-9a32-4dbdb31b738b"
 
@@ -49,4 +48,8 @@ async def run(address):
 
 
 def run_ble_client():
+    asyncio.run(run(address_a))
+
+
+if __name__ == "__main__":
     asyncio.run(run(address_a))
