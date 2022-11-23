@@ -1,13 +1,16 @@
-import pygame
 from paddle import Paddle
 from ball import Ball
+import pygame
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 SIZE = (700, 500)
 
+FPS = 60
+
 
 def run_game():
+
     pygame.init()
 
     screen = pygame.display.set_mode(SIZE)
@@ -44,6 +47,8 @@ def run_game():
     # use imu to control paddleA and paddleB
 
     while carryOn:
+        clock.tick(FPS)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 carryOn = False
@@ -93,8 +98,6 @@ def run_game():
         screen.blit(text, (420, 10))
 
         pygame.display.flip()
-
-        clock.tick(60)
 
     if winnerA:
         font = pygame.font.Font(None, 74)
