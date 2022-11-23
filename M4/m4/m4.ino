@@ -10,14 +10,14 @@
 #include <ArduinoBLE.h>
 #include <Arduino_LSM6DS3.h>
 
-#define BLE_UUID_ACCELEROMETER_SERVICE "3822"
+#define BLE_UUID_ACCELEROMETER_SERVICE "22e04be7-f090-4c5a-9a32-4dbdb31b738b"
 
-#define BLE_UUID_ACCELEROMETER_X "2101"
-#define BLE_UUID_ACCELEROMETER_Y "2102"
-#define BLE_UUID_ACCELEROMETER_Z "2103"
-#define BLE_UUID_GYROSCOPE_X "2201"
-#define BLE_UUID_GYROSCOPE_Y "2202"
-#define BLE_UUID_GYROSCOPE_Z "2203"
+#define BLE_UUID_ACCELEROMETER_X "4f612f9d-1c08-47a9-862e-720b3294aeaa"
+#define BLE_UUID_ACCELEROMETER_Y "4f612f9d-1c08-47a9-862e-720b3294aeab"
+#define BLE_UUID_ACCELEROMETER_Z "4f612f9d-1c08-47a9-862e-720b3294aeac"
+#define BLE_UUID_GYROSCOPE_X "4f612f9d-1c08-47a9-862e-720b3294aead"
+#define BLE_UUID_GYROSCOPE_Y "4f612f9d-1c08-47a9-862e-720b3294aeae"
+#define BLE_UUID_GYROSCOPE_Z "4f612f9d-1c08-47a9-862e-720b3294aeaf"
 
 #define BLE_DEVICE_NAME "Koorong"
 #define BLE_LOCAL_NAME "Koorong"
@@ -65,6 +65,7 @@ void setup()
 //  Serial.println(imuService.uuid());
   BLE.setAdvertisedService(imuService);
 
+  Serial.println(BLE.address());
   // add characteristics and service
   imuService.addCharacteristic(accelerometerCharacteristicX);
   imuService.addCharacteristic(accelerometerCharacteristicY);
